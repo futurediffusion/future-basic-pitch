@@ -33,6 +33,12 @@ we recommend that you cite the version of the code that was used.**
 ### Demo
 If, for whatever reason, you're not yet completely inspired, or you're just like so totally over the general vibe and stuff, checkout our snappy demo website, [basicpitch.io](https://basicpitch.io), to experiment with our model on whatever music audio you provide!
 
+### Local Gradio Demo
+To experiment locally you can run `python app.py`. This launches a Gradio interface with two tabs:
+
+- **Transcribir Audio**: upload an audio file and receive a MIDI file and a simple preview of the transcription.
+- **Previsualizar MIDI**: upload a MIDI file and listen to it rendered with a basic piano sound.
+
 
 ## Installation
 
