@@ -16,7 +16,10 @@ def transcribir(audio):
         save_notes=False,
         model_or_model_path=ICASSP_2022_MODEL_PATH,
     )
-    midi = os.path.join(tmpdir, os.path.splitext(os.path.basename(audio))[0] + ".mid")
+    midi = os.path.join(
+        tmpdir,
+        os.path.splitext(os.path.basename(audio))[0] + "_basic_pitch.mid",
+    )
     return midi
 
 
