@@ -97,6 +97,7 @@ basic-pitch <output-directory> <input-audio-path-1> <input-audio-path-2> <input-
 Optionally, you may append any of the following flags to your prediction command to save additional formats of the prediction output to the `<output-directory>`:
 
 - `--sonify-midi` to additionally save a `.wav` audio rendering of the MIDI file.
+  The generated audio is saved as 16-bit PCM so it can be played by standard audio players.
 - `--save-model-outputs` to additionally save raw model outputs as an NPZ file.
 - `--save-note-events` to additionally save the predicted note events as a CSV file.
 
@@ -172,7 +173,7 @@ where:
    - `<save-midi>`
         - *bool* to control generating and saving a MIDI file to the `<output-directory>`
    - `<sonify-midi>`
-        - *bool* to control saving a WAV audio rendering of the MIDI file to the `<output-directory>`
+        - *bool* to control saving a WAV audio rendering of the MIDI file to the `<output-directory>`. The output file is written as 16-bit PCM.
    - `<save-model-outputs>`
         - *bool* to control saving the raw model output as a NPZ file to the `<output-directory>`
    - `<save-notes>`
