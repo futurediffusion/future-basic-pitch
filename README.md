@@ -156,6 +156,7 @@ predict_and_save(
     <sonify-midi>,
     <save-model-outputs>,
     <save-notes>,
+    <model-or-model-path>,
 )
 ```
 
@@ -170,6 +171,8 @@ where:
         - *bool* to control saving the raw model output as a NPZ file to the `<output-directory>`
    - `<save-notes>`
         - *bool* to control saving predicted note events as a CSV file `<output-directory>`
+   - `<model-or-model-path>`
+        - path to a serialized model or a loaded `Model` instance
 
 
 
