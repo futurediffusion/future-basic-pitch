@@ -182,6 +182,17 @@ where:
         - path to a serialized model or a loaded `Model` instance
 
 
+### Key Detection
+
+You can estimate the musical key of an audio file using the `detect_key.py` helper script:
+
+```bash
+python detect_key.py <input-audio-path>
+```
+
+The script prints the detected key such as `C major` or `A minor`.
+
+
 
 ### Model Input
 
