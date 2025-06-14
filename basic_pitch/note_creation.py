@@ -264,7 +264,7 @@ def note_events_to_midi(
 
 
 def drop_overlapping_pitch_bends(
-    note_events_with_pitch_bends: List[Tuple[float, float, int, float, Optional[List[int]]]]
+    note_events_with_pitch_bends: List[Tuple[float, float, int, float, Optional[List[int]]]],
 ) -> List[Tuple[float, float, int, float, Optional[List[int]]]]:
     """Drop pitch bends from any notes that overlap in time with another note"""
     note_events = sorted(note_events_with_pitch_bends)
