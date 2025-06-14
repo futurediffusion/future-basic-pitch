@@ -3,6 +3,7 @@ from basic_pitch.inference import predict
 from basic_pitch import ICASSP_2022_MODEL_PATH
 from basic_pitch.note_creation import sonify_midi
 from basic_pitch.key_detection import detect_key_from_note_events
+from basic_pitch.chord_detection import detect_chords_from_midi
 import pretty_midi
 import os
 import tempfile
@@ -25,7 +26,12 @@ def transcribir(audio):
     )
     sonify_midi(midi_data, wav, sr=44100)
     key = detect_key_from_note_events(note_events)
-    return midi, wav, (key or "No se pudo detectar la tonalidad")
+    chords = detect_chords_from_midi(midi)
+    if chords:
+        chord_str = ", ".join(f"{t:.2f}s {name}" for t, name in chords)
+    else:
+        chord_str = "No se detectaron acordes"
+    return midi, wav, (key or "No se pudo detectar la tonalidad"), chord_str
 
 
 def previsualizar_midi(midi_file):
@@ -41,6 +47,7 @@ interface_transcribir = gr.Interface(
         gr.File(label="MIDI"),
         gr.Audio(label="Preview"),
         gr.Textbox(label="Tonalidad"),
+        gr.Textbox(label="Acordes"),
     ],
 )
 

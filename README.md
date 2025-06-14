@@ -37,6 +37,7 @@ If, for whatever reason, you're not yet completely inspired, or you're just like
 To experiment locally you can run `python app.py`. This launches a Gradio interface with two tabs:
 
 - **Transcribir Audio**: upload an audio file and receive a MIDI file and a simple preview of the transcription.
+- The interface also displays the detected key and, when possible, a basic chord progression.
 - **Previsualizar MIDI**: upload a MIDI file and listen to it rendered with a basic piano sound.
 
 
