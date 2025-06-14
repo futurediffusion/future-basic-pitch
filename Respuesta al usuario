@@ -1,0 +1,17 @@
+Sí, es posible crear un script .bat para automatizar la instalación y actualización en Windows. Un ejemplo básico sería:
+
+@echo off
+REM Actualiza el repositorio
+git pull
+
+REM Crea un entorno virtual
+python -m venv venv
+call venv\Scripts\activate
+
+REM Instala Basic Pitch (y TensorFlow si se desea)
+pip install --upgrade pip
+pip install basic-pitch
+REM Para instalar con TensorFlow: pip install "basic-pitch[tf]"
+
+REM Ejemplo de uso: procesar un archivo de audio
+REM basic-pitch salida\ carpeta\input.wav
