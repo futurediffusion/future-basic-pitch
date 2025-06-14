@@ -96,4 +96,5 @@ ICASSP_2022_MODEL_PATH = build_icassp_2022_model_path(_default_model_type)
 
 # Utility function for estimating the key of a melody
 from .key_detection import detect_key_from_note_events
+from .chord_detection import detect_chords_from_midi
 
