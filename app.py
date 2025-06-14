@@ -1,6 +1,7 @@
 import gradio as gr
 from basic_pitch.inference import predict_and_save
 from basic_pitch import ICASSP_2022_MODEL_PATH
+import pretty_midi
 import os
 import tempfile
 
@@ -11,7 +12,7 @@ def transcribir(audio):
         [audio],
         tmpdir,
         save_midi=True,
-        sonify_midi=False,
+        sonify_midi=True,
         save_model_outputs=False,
         save_notes=False,
         model_or_model_path=ICASSP_2022_MODEL_PATH,
@@ -20,7 +21,32 @@ def transcribir(audio):
         tmpdir,
         os.path.splitext(os.path.basename(audio))[0] + "_basic_pitch.mid",
     )
-    return midi
+    wav = os.path.join(
+        tmpdir,
+        os.path.splitext(os.path.basename(audio))[0] + "_basic_pitch.wav",
+    )
+    return midi, wav
 
 
-gr.Interface(fn=transcribir, inputs=gr.Audio(type="filepath"), outputs=gr.File()).launch()
+def previsualizar_midi(midi_file):
+    pm = pretty_midi.PrettyMIDI(midi_file)
+    audio = pm.synthesize(44100)
+    return 44100, audio
+
+
+interface_transcribir = gr.Interface(
+    fn=transcribir,
+    inputs=gr.Audio(type="filepath"),
+    outputs=[gr.File(label="MIDI"), gr.Audio(label="Preview")],
+)
+
+interface_preview = gr.Interface(
+    fn=previsualizar_midi,
+    inputs=gr.File(type="filepath", label="MIDI file"),
+    outputs=gr.Audio(label="Preview"),
+)
+
+gr.TabbedInterface(
+    [interface_transcribir, interface_preview],
+    ["Transcribir Audio", "Previsualizar MIDI"],
+).launch()
